@@ -5,6 +5,9 @@ import requests
 gathers a list of all the matches played in the given season
 """
 
+MATCH_COUNT_CAP = 5000
+
+
 def get_match_list(season):
     start = 0
 
@@ -18,7 +21,7 @@ def get_match_list(season):
         match_params = {"season": season, "limit_start": start, "scored": 1}
         match_out = json.loads(requests.get(match_url, match_params).text)
 
-        if match_out["size"] == 0:
+        if match_out["size"] == 0 or start >= MATCH_COUNT_CAP:
             break
 
         match_lst.extend(match_out["result"])
@@ -29,7 +32,7 @@ def get_match_list(season):
 
 if __name__ == "__main__":
     team_file = open(r"./match.txt", "w+")
-    SEASON_NAME = "Toss Up"
+    SEASON_NAME = "Tower Takeover"
 
     team_file.write(json.dumps(get_match_list(SEASON_NAME)))
 

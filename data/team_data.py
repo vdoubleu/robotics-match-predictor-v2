@@ -16,19 +16,20 @@ def get_team_stats(team_id, team_season=None):
     the dict contains:
         - basic team info (where they come from, their name, registered?, etc.)
         - age of team
-        - age of organisation
+        - age of organisation (currently disabled because it would take too long to run)
         - most recent season rating (vrating, vrating rank)
         - most recent season average team stats(wins/losses, CCWM, OPR/DPR, etc.)
     """
     
     basic_info = get_gen(team_id)
     team_age = get_team_age(team_id)
-    org_age = get_org_age(team_id)
+    #org_age = get_org_age(team_id)
     rating = get_rating(team_id, season=team_season)
     stats = get_stats(team_id, season=team_season)
 
     outDict = basic_info
-    outDict.update({"teamAge": team_age, "orgAge": org_age, "ratings": rating, "stats": stats})
+    #outDict.update({"teamAge": team_age, "orgAge": org_age, "ratings": rating, "stats": stats})
+    outDict.update({"teamAge": team_age, "ratings": rating, "stats": stats})
 
     return outDict
 
@@ -91,4 +92,4 @@ def get_stats(team_id, season = None):
     return stat_res
 
 if __name__ == "__main__":
-    print(get_team_stats("2381C", team_season="Tower Takeover"))
+    print(get_team_stats("2327A", team_season="Tower Takeover"))
