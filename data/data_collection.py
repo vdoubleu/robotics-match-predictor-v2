@@ -7,7 +7,6 @@ def get_data(team_file, season = None):
     matches = json.loads(team_file.readline())
     
     data = []
-
     count = 1
 
     for entry in matches:
@@ -29,7 +28,6 @@ def get_data(team_file, season = None):
         data.append({"red1": red1_info, "red2": red2_info, "blue1": blue1_info, "blue2": blue2_info, "redScore": red_score, "blueScore": blue_score})
 
     return data
-
 
 if __name__ == "__main__":
     data_file = open(r"./data.txt", "w+")
