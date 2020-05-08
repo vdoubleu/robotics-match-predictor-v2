@@ -1,18 +1,30 @@
 import json
 import statistics
+import sys
 
 def simp(lst):
     keys = ["rank", "wins", "losses", "ties", "wp", "ap", "sp", "trsp", "max_score", "opr", "dpr", "ccwm"]
     return dict((key, statistics.mean(map(lambda d: d[key], lst))) for key in keys)
 
 
-data_file = open(r"./data.txt", "r+")
+if len(sys.argv) <= 1:
+    print("no file num listed")
+    sys.exit()
+
+file_num = sys.argv[1]
+
+data_file = open(r"./data_files/data" + file_num + ".txt", "r+")
 data = json.loads(data_file.readline())
 
 res = []
 
 for entry in data:
     if entry["red1"]["program"] == "VEXU":
+        continue
+
+    print(entry)
+
+    if len(entry["red1"]["ratings"]) == 0 or len(entry["red2"]["ratings"]) == 0 or len(entry["blue1"]["ratings"]) == 0 or len(entry["blue2"]["ratings"]) == 0:
         continue
 
     red1_data = {"teamAge": entry["red1"]["teamAge"], "vrating_rank": entry["red1"]["ratings"][0]["vrating_rank"], "vrating": entry["red1"]["ratings"][0]["vrating"]}
@@ -32,7 +44,7 @@ for entry in data:
 
     res.append(newDict)
 
-simp_data_file = open(r"./simpData.txt", "w+")
+simp_data_file = open(r"./data_files/simpData" + file_num + ".txt", "w+")
 simp_data_file.write(json.dumps(res))
 
 simp_data_file.close()

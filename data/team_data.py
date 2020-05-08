@@ -14,13 +14,9 @@ def get_team_stats(team_id, team_season=None):
     returns a dict: the information about the team
 
     the dict contains:
-        - basic team info (where they come from, their name, registered?, etc.)
+        - basic team info (where they come from, their name, registered?, etc.)(disabled because not providing useful info and reduces number of necessary calls)
         - age of team
-<<<<<<< HEAD
         - age of organisation (currently disabled because it would take too long to run)
-=======
-        - age of organisation
->>>>>>> bf2bd9ee35dbeef4f9f8e7159bc5b02624580aba
         - most recent season rating (vrating, vrating rank)
         - most recent season average team stats(wins/losses, CCWM, OPR/DPR, etc.)
     """

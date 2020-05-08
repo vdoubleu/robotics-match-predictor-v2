@@ -1,13 +1,14 @@
 import json
 import requests
+import sys
 
 from team_data import get_team_stats
 
-def get_data(team_file, season = None):
-    matches = json.loads(team_file.readline())
+def get_data(match_file, season = None):
+    matches = json.loads(match_file.readline())
     
     data = []
-    count = 1
+    count = 1 
 
     for entry in matches:
         print(str(count) + "/" + str(len(matches)))
@@ -30,10 +31,17 @@ def get_data(team_file, season = None):
     return data
 
 if __name__ == "__main__":
-    data_file = open(r"./data.txt", "w+")
-    team_file = open(r"./match.txt", "r+")
-    
-    data_file.write(json.dumps(get_data(team_file, "Tower Takeover")))
+    arg_num = len(sys.argv)
+    if arg_num > 1:
+        file_num = sys.argv[1]
+    else:
+        print("no file num was inputed, defaulting to 0")
+        file_num = 0
 
-    team_file.close()
+    data_file = open(r"./data_files/data" + file_num + ".txt", "w+")
+    match_file = open(r"./data_files/match" + file_num +  ".txt", "r+")
+    
+    data_file.write(json.dumps(get_data(match_file, "Tower Takeover")))
+
+    match_file.close()
     data_file.close()

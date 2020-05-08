@@ -1,15 +1,14 @@
 import json
 import requests
+import sys
 
 """
 gathers a list of all the matches played in the given season
 """
 
-MATCH_COUNT_CAP = 5000
-
-
-def get_match_list(season):
-    start = 0
+def get_match_list(season, f_num):
+    start = 5000 * f_num
+    MATCH_COUNT_CAP = start+5000
 
     match_url = "https://api.vexdb.io/v1/get_matches"
     
@@ -31,9 +30,16 @@ def get_match_list(season):
     return match_lst
 
 if __name__ == "__main__":
-    team_file = open(r"./match.txt", "w+")
+    arg_num = len(sys.argv)
+    if arg_num > 1:
+        file_num = sys.argv[1]
+    else:
+        print("no file num was inputed, defaulting to zero")
+        file_num = 0
+
+    team_file = open(r"./data_files/match" + file_num + ".txt", "w+")
     SEASON_NAME = "Tower Takeover"
 
-    team_file.write(json.dumps(get_match_list(SEASON_NAME)))
+    team_file.write(json.dumps(get_match_list(SEASON_NAME, int(file_num))))
 
     team_file.close()

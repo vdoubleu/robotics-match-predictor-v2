@@ -2,7 +2,7 @@ import json
 import pandas as pd
 
 def make_dataframe():
-    data_file = open(r"./simpData.txt", "r+")
+    data_file = open(r"./data_files/cleanData.txt", "r+")
     df = pd.read_json(data_file.readline())
     data_file.close()
     return df
