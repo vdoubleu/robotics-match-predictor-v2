@@ -9,3 +9,4 @@ This my first attempt at creating a neural net for this problem from scratch usi
 After some additional testing, I realised additional training data was required. After tripling the amount of data I had, I then decided to do some more testing and fiddling with keras to prototype a basic model that managed to hit over 75% accuracy using just the teams wins and losses.
 
 ## Neural Net 3
+I try using only VRating and VRating-Rank, I barely scrape over 50% success rate. Perhaps neural networks are not the best way to utilise these ranking methods? I might need to try doing this with other factors or other models.
