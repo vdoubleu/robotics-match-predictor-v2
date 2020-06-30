@@ -1,0 +1,2 @@
+# Models
+As it stands right now, most models I have tried have about a 75% - 78% success rate after some optimisation. Perhaps this is the hard limit for this problem? Trees, neural networks and regression with naive baies were all able to hit this mark. This probably leads me to believe that I have not yet explored this problem enough. I can probably reach 80% success rate with further optimisation.
