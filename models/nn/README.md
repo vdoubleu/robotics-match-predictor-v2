@@ -7,3 +7,5 @@ This my first attempt at creating a neural net for this problem from scratch usi
 
 ## Neural Net 2
 After some additional testing, I realised additional training data was required. After tripling the amount of data I had, I then decided to do some more testing and fiddling with keras to prototype a basic model that managed to hit over 75% accuracy using just the teams wins and losses.
+
+## Neural Net 3
